@@ -8,14 +8,26 @@
 
 import UIKit
 
+/**
+ Framework collection view controller. In this case, it just display a few data for demo.
+ */
 class FWCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    /**
+     collection view cell ID
+     */
     let fwCellID = "fwCollectionCell"
     
+    /**
+     data source
+     */
     var fwItems: [FrameworkBean] {
         return FrameworkBeanDAO().getFWBeanArray()
     }
     
+    /**
+     collection view. off course, it's a UICollectionView object.
+     */
     @IBOutlet weak var fwCollectionView: UICollectionView!
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -72,6 +84,15 @@ class FWCollectionViewController: UIViewController, UICollectionViewDataSource, 
         fwCollectionView.delegate = self
     }
     
+    /**
+     segue a page that displays web view.
+     
+     2017-11-23, Phoenix:
+     It is not work now. Because when user click the cell, it occurs an exception and makes app crush.
+     The exception is from SkillViewController, it's a subclass of UITableViewController. I used
+     container view to map this collection view and put it in a cell of SkillVIewController's table
+     view, it can display on screen smoothly, but the segue does not work.
+     */
     func showWebView() {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "webViewController") {
             present(controller, animated: true, completion: nil)
