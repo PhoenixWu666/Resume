@@ -11,7 +11,6 @@
         <!--Skill-->
         <scene sceneID="lGb-x6-fYR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tkw-GD-aTf" userLabel="second" sceneMemberID="firstResponder"/>
                 <tableViewController id="55M-nO-2su" customClass="SkillViewController" customModule="Resume" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="clc-wV-Ku8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
@@ -79,13 +78,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Skill" id="XpX-sm-q0k"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tkw-GD-aTf" userLabel="second" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="311" y="-278"/>
         </scene>
-        <!--Skill View Controller-->
+        <!--Skill Web View Controller-->
         <scene sceneID="1QE-32-7Vn">
             <objects>
-                <viewController storyboardIdentifier="webViewController" id="gKA-Jp-k7o" customClass="SkillViewController" customModule="Resume" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="webViewController" id="gKA-Jp-k7o" customClass="SkillWebViewController" customModule="Resume" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7cx-xb-hBc"/>
                         <viewControllerLayoutGuide type="bottom" id="45K-zh-iuh"/>
@@ -113,7 +113,6 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="UMi-1v-bQI" kind="relationship" relationship="rootViewController" id="aI9-l2-ilq"/>
-                        <segue destination="gKA-Jp-k7o" kind="show" identifier="showWebView" id="1yB-Lo-ZfM"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hrx-0T-0kg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -224,6 +223,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Skill" id="z1U-ga-tMH"/>
+                    <connections>
+                        <segue destination="gKA-Jp-k7o" kind="show" identifier="showWebView" id="xsA-5g-FmA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xa-Gj-nNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -233,6 +235,10 @@
         <scene sceneID="nnq-3P-mTG">
             <objects>
                 <viewController id="j4T-Dt-Xz1" customClass="FWCollectionViewController" customModule="Resume" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B73-fh-vk6"/>
+                        <viewControllerLayoutGuide type="bottom" id="jS0-v2-zlb"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CgJ-Th-4QM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="439"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

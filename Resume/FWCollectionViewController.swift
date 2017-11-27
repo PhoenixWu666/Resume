@@ -94,8 +94,8 @@ class FWCollectionViewController: UIViewController, UICollectionViewDataSource, 
      view, it can display on screen smoothly, but the segue does not work.
      */
     func showWebView() {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "webViewController") {
-            present(controller, animated: true, completion: nil)
+        if let rootViewController = navigationController?.childViewControllers[0] {
+            rootViewController.performSegue(withIdentifier: "showWebView", sender: rootViewController)
         }
     }
 
