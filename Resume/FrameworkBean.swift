@@ -12,14 +12,13 @@ class FrameworkBean {
     
     var name: String
     
+    var url: String
+    
     var topics: [FrameworkTopicItem] = []
     
-    init(_ name: String) {
+    init(name: String, url: String, topics: [FrameworkTopicItem]) {
         self.name = name
-    }
-    
-    init(name: String, topics: [FrameworkTopicItem]) {
-        self.name = name
+        self.url = url
         self.topics = topics
     }
     

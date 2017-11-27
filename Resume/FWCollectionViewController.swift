@@ -30,7 +30,10 @@ class FWCollectionViewController: UIViewController, UICollectionViewDataSource, 
      */
     @IBOutlet weak var fwCollectionView: UICollectionView!
     
+    var selectedItem: FrameworkBean?
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedItem = fwItems[indexPath.row]
         showWebView()
     }
     
@@ -94,7 +97,9 @@ class FWCollectionViewController: UIViewController, UICollectionViewDataSource, 
      view, it can display on screen smoothly, but the segue does not work.
      */
     func showWebView() {
-        if let rootViewController = navigationController?.childViewControllers[0] {
+        if let rootViewController = navigationController?.childViewControllers[0] as? SkillRootViewController
+        , let bean = selectedItem {
+            rootViewController.url = bean.url
             rootViewController.performSegue(withIdentifier: "showWebView", sender: rootViewController)
         }
     }

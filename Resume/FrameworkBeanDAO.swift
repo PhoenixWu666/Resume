@@ -34,24 +34,24 @@ class FrameworkBeanDAO {
     func getFWBeanArray() -> [FrameworkBean] {
         var result = [FrameworkBean]()
         
-        if let bean = getFWBean(name: "HealthKit", imgName: "hhw003") {
+        if let bean = getFWBean(name: "HealthKit", url: "https://developer.apple.com/documentation/healthkit?changes=latest_major", imgName: "hhw003") {
             result.append(bean)
         }
         
-        if let bean = getFWBean(name: "SiriKit", imgName: "hhw003") {
+        if let bean = getFWBean(name: "SiriKit", url: "https://developer.apple.com/documentation/sirikit?changes=latest_major", imgName: "hhw003") {
             result.append(bean)
         }
         
-        if let bean = getFWBean(name: "WatchKit", imgName: "hhw003") {
+        if let bean = getFWBean(name: "WatchKit", url: "https://developer.apple.com/documentation/watchkit?changes=latest_major", imgName: "hhw003") {
             result.append(bean)
         }
         
         return result
     }
     
-    private func getFWBean(name: String, imgName: String) -> FrameworkBean? {
+    private func getFWBean(name: String, url: String, imgName: String) -> FrameworkBean? {
         if let topicItems = topicItemDictionary[name] {
-            return FrameworkBean(name: name, topics: topicItems)
+            return FrameworkBean(name: name, url: url, topics: topicItems)
         } else {
             return nil
         }

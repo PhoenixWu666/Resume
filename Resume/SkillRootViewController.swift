@@ -9,6 +9,14 @@
 import UIKit
 
 class SkillRootViewController: UIViewController {
+    
+    var url: String?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let webViewController = segue.destination as? SkillWebViewController {
+            webViewController.urlStr = url
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

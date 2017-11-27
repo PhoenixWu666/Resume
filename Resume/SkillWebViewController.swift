@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import WebKit
 
 class SkillWebViewController: UIViewController {
+    
+    var urlStr: String?
+    
+    var webView: WKWebView!
+    
+    override func loadView() {
+        webView = WKWebView()
+        view = webView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let urlStr = self.urlStr, let url = URL(string: urlStr) {
+            webView.load(URLRequest(url: url))
+        }
     }
 
     override func didReceiveMemoryWarning() {
