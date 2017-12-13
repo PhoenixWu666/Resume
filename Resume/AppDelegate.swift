@@ -8,11 +8,14 @@
 
 import UIKit
 import UserNotifications
+import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
+    
+    var isLaunchedByNotification = false
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs Registration Success")
@@ -23,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
         }
         
-        print(token)
+        print("token: \(token)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -31,21 +34,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("**************************************** Notification Content ****************************************")
         print(userInfo)
+        print("******************************************************************************************************")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "displayExperience")
+        
+        if let tabbarController = window?.rootViewController as? UITabBarController {
+            if tabbarController.viewControllers!.count > 0 {
+                tabbarController.selectedIndex = 1
+                tabbarController.selectedViewController = tabbarController.viewControllers![1]
+            } else {
+                tabbarController.setViewControllers([controller], animated: true)
+                tabbarController.selectedViewController = controller
+            }
+        }
+        
+        // window?.rootViewController?.present(controller, animated: true, completion: nil)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        let notificationTypes = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-//        let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+        let unAuthOptions: UNAuthorizationOptions = [.sound, .alert]
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.requestAuthorization(options: [.alert, .sound], completionHandler: {
-            granted, error in
-            
-            // Do something
-        })
+        
+        notificationCenter.requestAuthorization(options: unAuthOptions, completionHandler: { _, _ in })
+        notificationCenter.delegate = self
+        Messaging.messaging().delegate = self
         
         application.registerForRemoteNotifications()
+        FirebaseApp.configure()
+        
+        // get fcm token
+        let fcmToken = Messaging.messaging().fcmToken
+        print("FCM token: \(fcmToken ?? "")")
         
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -58,6 +80,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSAttributedStringKey.foregroundColor : UIColor.white,
                 NSAttributedStringKey.font : barFont
             ]
+        }
+        
+        isLaunchedByNotification = launchOptions?[.remoteNotification] != nil
+        
+        if isLaunchedByNotification {
+            print("Launched by notification")
         }
         
         return true

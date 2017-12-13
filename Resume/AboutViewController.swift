@@ -12,6 +12,11 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("AboutViewController.viewWillDisappear")
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -33,7 +38,13 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
 
             case 2:
                 cell.titleLabel.text = "email"
-                cell.valueLabel.text = "xxxx@gmail.com"
+                
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.isLaunchedByNotification {
+                    cell.valueLabel.text = "xxxx@gmail.com"
+                    appDelegate.isLaunchedByNotification = false
+                } else {
+                    cell.valueLabel.text = "❤️ミ❤️ク❤️命❤️@gmail.com"
+                }
 
             default:
                 break
@@ -54,6 +65,13 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.backgroundColor = UIColor(red: 71/255, green: 68/255, blue: 59/255, alpha: 0.4)
         tableView.separatorColor = UIColor(red: 71/255, green: 68/255, blue: 59/255, alpha: 0.4)
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.isLaunchedByNotification {
+            if let tabbarController = self.parent as? UITabBarController, let count = tabbarController.viewControllers?.count, count > 0 {
+                tabbarController.selectedIndex = 1
+                tabbarController.selectedViewController = tabbarController.viewControllers![1]
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
