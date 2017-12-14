@@ -60,8 +60,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.isLaunchedByNotification {
             if let tabbarController = self.parent as? UITabBarController, let count = tabbarController.viewControllers?.count, count > 0 {
                 let lastIdx = tabbarController.viewControllers!.count - 1
-                if let destination = appDelegate.getViewControllerFromRootViewController(tabbarController: tabbarController, selectedIndex: lastIdx) as? NotificationContentViewController, let optionContent = appDelegate.optionContent {
-                    destination.msgContent = optionContent
+                if let destination = appDelegate.getViewControllerFromRootViewController(tabbarController: tabbarController, selectedIndex: lastIdx) as? NotificationContentViewController, let data = appDelegate.notificationContentData {
+                    destination.notificationContent = data
                 }
                 
                 appDelegate.moveToOtherVC(rootViewController: tabbarController, selectedIndex: lastIdx)

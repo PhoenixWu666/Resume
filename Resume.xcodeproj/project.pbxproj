@@ -42,6 +42,7 @@
 		74F3D97C1F78D64800222D1F /* ExperienceDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F3D97B1F78D64800222D1F /* ExperienceDAO.swift */; };
 		74F3D97E1F78DBF900222D1F /* ExperienceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F3D97D1F78DBF900222D1F /* ExperienceDataSource.swift */; };
 		74F869061F79ED49002F19E1 /* ExperienceTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F869051F79ED49002F19E1 /* ExperienceTableCell.swift */; };
+		74FF0CDD1FE210BE00B47483 /* NotificationContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF0CDC1FE210BE00B47483 /* NotificationContentData.swift */; };
 		75EB079C768E02956BB5C09A /* Pods_ResumeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23609936C0D06ED8327D09C /* Pods_ResumeTests.framework */; };
 		8EB86E8BFA60C91500A0B493 /* Pods_ResumeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4058B2A9573E012219917AC0 /* Pods_ResumeUITests.framework */; };
 /* End PBXBuildFile section */
@@ -109,6 +110,7 @@
 		74F3D97B1F78D64800222D1F /* ExperienceDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceDAO.swift; sourceTree = "<group>"; };
 		74F3D97D1F78DBF900222D1F /* ExperienceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceDataSource.swift; sourceTree = "<group>"; };
 		74F869051F79ED49002F19E1 /* ExperienceTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableCell.swift; sourceTree = "<group>"; };
+		74FF0CDC1FE210BE00B47483 /* NotificationContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContentData.swift; sourceTree = "<group>"; };
 		9AB5EBC78A3F575A9335D291 /* Pods-ResumeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResumeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ResumeUITests/Pods-ResumeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A23609936C0D06ED8327D09C /* Pods_ResumeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ResumeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC97858678F1B8DFE7FC93CF /* Pods-ResumeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResumeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ResumeTests/Pods-ResumeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				7427313D1FE1334D008BDA6A /* NotificationContentViewController.swift */,
+				74FF0CDC1FE210BE00B47483 /* NotificationContentData.swift */,
 				740AF5771FC50E8A00954017 /* SkillRootViewController.swift */,
 				740AF5751FC4FFF200954017 /* FWCollectionViewController.swift */,
 				74603EBD1FC3E40900EED313 /* PGCollectionViewController.swift */,
@@ -586,6 +589,7 @@
 				74EF00631F5C23E700696930 /* AppDelegate.swift in Sources */,
 				74E2D25D1FBD86B300671F35 /* ResumeModel.xcdatamodeld in Sources */,
 				74E2D25F1FBD88CF00671F35 /* ProgrammingLanguageBean.swift in Sources */,
+				74FF0CDD1FE210BE00B47483 /* NotificationContentData.swift in Sources */,
 				7427313E1FE1334D008BDA6A /* NotificationContentViewController.swift in Sources */,
 				7497A6901FB58A7D006ADD94 /* ExperienceDetailViewCell.swift in Sources */,
 				74F3D97A1F78D39300222D1F /* ExperienceDataBean.swift in Sources */,

@@ -12,11 +12,16 @@ class NotificationContentViewController: UIViewController {
     
     @IBOutlet weak var contentLbl: UILabel!
     
+    @IBOutlet weak var bodyLbl: UILabel!
+    
+    var notificationContent: NotificationContentData?
+    
     var msgContent: String?
     
     override func viewWillAppear(_ animated: Bool) {
-        if let msgContent = msgContent {
-            contentLbl.text = msgContent
+        if let content = notificationContent {
+            contentLbl.text = content.title
+            bodyLbl.text = content.body
         }
     }
     

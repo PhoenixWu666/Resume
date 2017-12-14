@@ -17,7 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var isLaunchedByNotification = false
     
-    var optionContent: String?
+    var notificationContentData: NotificationContentData?
+    
+    func getContentDataFromNotification(content: NSDictionary) -> NotificationContentData? {
+        if let alert = content["alert"] as? NSDictionary {
+            if let title = alert["title"] as? String, let body = alert["body"] as? String {
+                let data = NotificationContentData()
+                data.title = title
+                data.body = body
+                
+                return data
+            }
+        }
+        
+        return nil
+    }
     
     func getViewControllerFromRootViewController(tabbarController: UITabBarController, selectedIndex: Int) -> UIViewController? {
         if let viewControllers = tabbarController.viewControllers {
@@ -54,11 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let tabbarController = window?.rootViewController as? UITabBarController {
-            let msg = String(describing: userInfo[AnyHashable("aps")]!)
             let lastIdx = tabbarController.viewControllers!.count - 1
             
             if let destination = getViewControllerFromRootViewController(tabbarController: tabbarController, selectedIndex: lastIdx) as? NotificationContentViewController {
-                destination.msgContent = msg
+                if let content = userInfo["aps"] as? NSDictionary, let data = getContentDataFromNotification(content: content) {
+                    destination.notificationContent = data
+                }
                 
                 moveToOtherVC(rootViewController: tabbarController, selectedIndex: lastIdx)
             }
@@ -93,14 +108,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             ]
         }
         
-        if let option = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
-            optionContent = String(describing: option)
-        }
-        
-        isLaunchedByNotification = launchOptions?[.remoteNotification] != nil
-        
-        if isLaunchedByNotification {
-            print("Launched by notification")
+        if let option = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary,
+            let content = option["aps"] as? NSDictionary,
+            let data = getContentDataFromNotification(content: content) {
+            notificationContentData = data
+            isLaunchedByNotification = true
         }
         
         return true

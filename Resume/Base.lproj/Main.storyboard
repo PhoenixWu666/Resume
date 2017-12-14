@@ -142,7 +142,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKh-Hq-pPN">
-                                <rect key="frame" x="26" y="54" width="323" height="665"/>
+                                <rect key="frame" x="26" y="53.999999999999993" width="323" height="81.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Et2-1P-u55">
+                                <rect key="frame" x="36" y="155.33333333333337" width="303" height="173.66666666666663"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -150,14 +156,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="5JU-Zf-Qj4" firstAttribute="top" secondItem="Et2-1P-u55" secondAttribute="bottom" constant="400" id="JWs-vV-iGd"/>
+                            <constraint firstItem="sKh-Hq-pPN" firstAttribute="height" secondItem="x8G-25-XWV" secondAttribute="height" multiplier="0.1" id="RUK-e5-jcn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sKh-Hq-pPN" secondAttribute="trailing" constant="10" id="XFO-OG-ccu"/>
                             <constraint firstItem="sKh-Hq-pPN" firstAttribute="top" secondItem="yhl-Vf-EAt" secondAttribute="bottom" constant="10" id="dBg-Fx-x98"/>
+                            <constraint firstItem="Et2-1P-u55" firstAttribute="top" secondItem="sKh-Hq-pPN" secondAttribute="bottom" constant="20" id="g8q-em-VfK"/>
+                            <constraint firstItem="Et2-1P-u55" firstAttribute="leading" secondItem="x8G-25-XWV" secondAttribute="leadingMargin" constant="20" id="orh-9E-YRA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Et2-1P-u55" secondAttribute="trailing" constant="20" id="qUL-gO-Bt9"/>
                             <constraint firstItem="sKh-Hq-pPN" firstAttribute="leading" secondItem="x8G-25-XWV" secondAttribute="leadingMargin" constant="10" id="yXr-jD-DOO"/>
-                            <constraint firstItem="5JU-Zf-Qj4" firstAttribute="top" secondItem="sKh-Hq-pPN" secondAttribute="bottom" constant="10" id="yhf-j7-Dit"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Notification" image="about2" id="CmN-rP-JJb"/>
                     <connections>
+                        <outlet property="bodyLbl" destination="Et2-1P-u55" id="DNW-Pe-izr"/>
                         <outlet property="contentLbl" destination="sKh-Hq-pPN" id="Lbs-H9-hsL"/>
                     </connections>
                 </viewController>
