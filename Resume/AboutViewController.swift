@@ -56,6 +56,19 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
 
+    fileprivate func moveToDetailViewController() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.isLaunchedByNotification {
+            if let tabbarController = self.parent as? UITabBarController, let count = tabbarController.viewControllers?.count, count > 0 {
+                let lastIdx = tabbarController.viewControllers!.count - 1
+                if let destination = appDelegate.getViewControllerFromRootViewController(tabbarController: tabbarController, selectedIndex: lastIdx) as? NotificationContentViewController, let optionContent = appDelegate.optionContent {
+                    destination.msgContent = optionContent
+                }
+                
+                appDelegate.moveToOtherVC(rootViewController: tabbarController, selectedIndex: lastIdx)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,12 +79,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.separatorColor = UIColor(red: 71/255, green: 68/255, blue: 59/255, alpha: 0.4)
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.isLaunchedByNotification {
-            if let tabbarController = self.parent as? UITabBarController, let count = tabbarController.viewControllers?.count, count > 0 {
-                tabbarController.selectedIndex = 1
-                tabbarController.selectedViewController = tabbarController.viewControllers![1]
-            }
-        }
+        moveToDetailViewController()
     }
 
     override func didReceiveMemoryWarning() {

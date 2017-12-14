@@ -13,6 +13,7 @@
 		741A4B5B1FBD441800740FD1 /* ProgrammingLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A4B5A1FBD441800740FD1 /* ProgrammingLanguageCell.swift */; };
 		741A4B5D1FBD443300740FD1 /* FrameworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A4B5C1FBD443300740FD1 /* FrameworkCell.swift */; };
 		7425C9911FBBDD1300FC8D3B /* Skill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7425C9901FBBDD1300FC8D3B /* Skill.storyboard */; };
+		7427313E1FE1334D008BDA6A /* NotificationContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7427313D1FE1334D008BDA6A /* NotificationContentViewController.swift */; };
 		74584C7D1F6B72E000AA8F54 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74584C7C1F6B72E000AA8F54 /* AboutViewController.swift */; };
 		74603EBC1FC3DE1000EED313 /* SkillWebViewSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74603EBB1FC3DE1000EED313 /* SkillWebViewSegue.swift */; };
 		74603EBE1FC3E40900EED313 /* PGCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74603EBD1FC3E40900EED313 /* PGCollectionViewController.swift */; };
@@ -71,6 +72,7 @@
 		741A4B5A1FBD441800740FD1 /* ProgrammingLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammingLanguageCell.swift; sourceTree = "<group>"; };
 		741A4B5C1FBD443300740FD1 /* FrameworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkCell.swift; sourceTree = "<group>"; };
 		7425C9901FBBDD1300FC8D3B /* Skill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Skill.storyboard; sourceTree = "<group>"; };
+		7427313D1FE1334D008BDA6A /* NotificationContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContentViewController.swift; sourceTree = "<group>"; };
 		7445A6701F9C9997002F09CC /* Resume.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Resume.entitlements; sourceTree = "<group>"; };
 		74584C7C1F6B72E000AA8F54 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		74603EBB1FC3DE1000EED313 /* SkillWebViewSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillWebViewSegue.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		74EF00611F5C23E700696930 /* Resume */ = {
 			isa = PBXGroup;
 			children = (
+				7427313D1FE1334D008BDA6A /* NotificationContentViewController.swift */,
 				740AF5771FC50E8A00954017 /* SkillRootViewController.swift */,
 				740AF5751FC4FFF200954017 /* FWCollectionViewController.swift */,
 				74603EBD1FC3E40900EED313 /* PGCollectionViewController.swift */,
@@ -583,6 +586,7 @@
 				74EF00631F5C23E700696930 /* AppDelegate.swift in Sources */,
 				74E2D25D1FBD86B300671F35 /* ResumeModel.xcdatamodeld in Sources */,
 				74E2D25F1FBD88CF00671F35 /* ProgrammingLanguageBean.swift in Sources */,
+				7427313E1FE1334D008BDA6A /* NotificationContentViewController.swift in Sources */,
 				7497A6901FB58A7D006ADD94 /* ExperienceDetailViewCell.swift in Sources */,
 				74F3D97A1F78D39300222D1F /* ExperienceDataBean.swift in Sources */,
 				74F3D9761F78CA5500222D1F /* ExperienceTableViewController.swift in Sources */,

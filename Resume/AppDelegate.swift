@@ -17,6 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var isLaunchedByNotification = false
     
+    var optionContent: String?
+    
+    func getViewControllerFromRootViewController(tabbarController: UITabBarController, selectedIndex: Int) -> UIViewController? {
+        if let viewControllers = tabbarController.viewControllers {
+            if viewControllers.count > selectedIndex {
+                return viewControllers[selectedIndex]
+            }
+        }
+        
+        return nil
+    }
+    
+    func moveToOtherVC(rootViewController: UITabBarController, selectedIndex: Int) {
+        if let viewControllers = rootViewController.viewControllers, viewControllers.count > selectedIndex {
+            rootViewController.selectedIndex = selectedIndex
+            rootViewController.selectedViewController = viewControllers[selectedIndex]
+        }
+    }
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs Registration Success")
         
@@ -34,24 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("**************************************** Notification Content ****************************************")
-        print(userInfo)
-        print("******************************************************************************************************")
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "displayExperience")
-        
         if let tabbarController = window?.rootViewController as? UITabBarController {
-            if tabbarController.viewControllers!.count > 0 {
-                tabbarController.selectedIndex = 1
-                tabbarController.selectedViewController = tabbarController.viewControllers![1]
-            } else {
-                tabbarController.setViewControllers([controller], animated: true)
-                tabbarController.selectedViewController = controller
+            let msg = String(describing: userInfo[AnyHashable("aps")]!)
+            let lastIdx = tabbarController.viewControllers!.count - 1
+            
+            if let destination = getViewControllerFromRootViewController(tabbarController: tabbarController, selectedIndex: lastIdx) as? NotificationContentViewController {
+                destination.msgContent = msg
+                
+                moveToOtherVC(rootViewController: tabbarController, selectedIndex: lastIdx)
             }
         }
-        
-        // window?.rootViewController?.present(controller, animated: true, completion: nil)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -80,6 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 NSAttributedStringKey.foregroundColor : UIColor.white,
                 NSAttributedStringKey.font : barFont
             ]
+        }
+        
+        if let option = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
+            optionContent = String(describing: option)
         }
         
         isLaunchedByNotification = launchOptions?[.remoteNotification] != nil
